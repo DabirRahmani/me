@@ -16,9 +16,11 @@ const mutations = {
   },
 };
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
 const actions = {
   async login({ commit }, { email, password }) {
-    const res = await fetch("https://apidabirgress.runflare.run" + "/api/login", {
+    const res = await fetch(API_BASE_URL + "/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -34,7 +36,7 @@ const actions = {
   },
 
   async register({ commit }, { email, password, name }) {
-    const res = await fetch("https://apidabirgress.runflare.run" + "/api/register", {
+    const res = await fetch(API_BASE_URL + "/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, name }),
@@ -54,7 +56,7 @@ const actions = {
     if (!state.token) return;
     try {
       const res = await fetch(
-        "https://apidabirgress.runflare.run" + "/api/me",
+        API_BASE_URL + "/api/me",
         {
           headers: { Authorization: `Bearer ${state.token}` },
         },

@@ -210,6 +210,9 @@ import { items as theme } from "@/theme";
 import exporter from "@/exporter";
 import { mapGetters } from "vuex";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
+
 export default {
   name: "CanvasPage",
   components: { Edit, LoadingSpinner, VisContainer },
@@ -267,7 +270,7 @@ export default {
         // Remove projectName from exported data to avoid overwriting user input
         const { projectName: _, ...dataWithoutProjectName } = exportedData;
         
-        const res = await fetch( "https://apidabirgress.runflare.run" + "/api/configs", {
+        const res = await fetch( API_BASE_URL + "/api/configs", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -300,7 +303,7 @@ export default {
           return;
         }
 
-        const res = await fetch( "https://apidabirgress.runflare.run" + "/api/configs", {
+        const res = await fetch( API_BASE_URL + "/api/configs", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -328,7 +331,7 @@ export default {
         }
 
         // Fetch only the specific config by name
-        const res = await fetch("https://apidabirgress.runflare.run" + `/api/configs/${encodeURIComponent(configName)}`, {
+        const res = await fetch(API_BASE_URL + `/api/configs/${encodeURIComponent(configName)}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -369,7 +372,7 @@ export default {
           return;
         }
 
-        const res = await fetch("https://apidabirgress.runflare.run" + `/api/configs/${encodeURIComponent(configName)}`, {
+        const res = await fetch(API_BASE_URL + `/api/configs/${encodeURIComponent(configName)}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,

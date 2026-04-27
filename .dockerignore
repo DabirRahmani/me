@@ -1,0 +1,14 @@
+.git
+node_modules
+backend/node_modules
+npm-debug.log*
+.env
+backend/.env
+Dockerfile
+.dockerignore
+dist
+coverage
+.nyc_output
+.cypress
+.cache
+.vite
